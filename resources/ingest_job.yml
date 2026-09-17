@@ -1,0 +1,48 @@
+resources:
+  jobs:
+    ingest_market_data:
+      name: "[${bundle.target}] Ingesta de datos de mercado"
+      description: >-
+        Massive API -> bronze/silver/gold -> Lakebase. Perfiles de empresa y
+        noticias, troceados y embebidos para la búsqueda semántica.
+
+      tasks:
+        - task_key: ingest
+          spark_python_task:
+            python_file: ../jobs/ingest_market_data.py
+            parameters:
+              - "--tickers"
+              - "${var.tickers}"
+              - "--news-days"
+              - "14"
+
+          job_cluster_key: ingest_cluster
+
+          libraries:
+            - pypi:
+                package: psycopg2-binary
+
+      job_clusters:
+        - job_cluster_key: ingest_cluster
+          new_cluster:
+            spark_version: 15.4.x-scala2.12
+            node_type_id: i3.xlarge
+            # Un solo nodo: el volumen es pequeño y el cuello de botella es la
+            # cuota de la API, no el cómputo.
+            num_workers: 0
+            spark_conf:
+              spark.master: "local[*]"
+              spark.databricks.cluster.profile: singleNode
+            custom_tags:
+              ResourceClass: SingleNode
+            data_security_mode: SINGLE_USER
+
+      # Sin schedule hasta M4: durante el desarrollo se lanza a mano para no
+      # quemar la cuota del plan gratuito.
+      # schedule:
+      #   quartz_cron_expression: "0 30 6 * * ?"
+      #   timezone_id: Europe/Madrid
+
+      email_notifications:
+        on_failure:
+          - ayerbedev@gmail.com

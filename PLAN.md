@@ -46,12 +46,12 @@ el análisis.
 - [x] `PLAN.md` y esquema SQL
 - [x] `databricks.yml` (Databricks Asset Bundle) + `SETUP.md` con los pasos de credenciales
 - [ ] Secret scope con la API key de Massive (reutilizar el patrón de `massive_client.py`)
-- [ ] Crear tablas en Lakebase + sembrar 1 usuario y la watchlist (AAPL, MSFT, NVDA, JPM, XOM)
+- [ ] Ejecutar `sql/schema.sql` y `sql/seed.sql` en Lakebase — sembrar 1 usuario y la watchlist (AAPL, MSFT, NVDA, JPM, XOM)
 
 ### M1 — Esqueleto vertical `[pendiente]`
 El corte más fino que atraviesa **todas** las capas y queda desplegado.
-- [ ] Job Spark: Massive → bronze (JSON crudo) → silver (limpio, chunked) → gold (embeddings)
-- [ ] Carga en Lakebase: `companies`, `news_articles`, `document_chunks`
+- [x] Job Spark: Massive → bronze (JSON crudo) → silver (limpio, chunked) → gold (embeddings)
+- [x] Carga en Lakebase: `companies`, `news_articles`, `document_chunks` (upsert idempotente)
 - [ ] Solo esos 5 tickers y solo noticias + perfiles de empresa
 - [ ] `tools/search_context.py` — búsqueda vectorial con filtros
 - [ ] App desplegada: chat con agente que tiene esa única herramienta
