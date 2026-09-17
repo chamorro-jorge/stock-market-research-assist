@@ -33,7 +33,11 @@ tests/       pytest de las herramientas, sin LLM
 
 ## Puesta en marcha
 
-Pendiente de completar en M0/M1. Ver [PLAN.md](PLAN.md) para el estado y los hitos.
+1. Credenciales y tablas: ver **[SETUP.md](SETUP.md)** (se hace una vez).
+2. Despliegue: `databricks bundle deploy -t dev`
+3. Ingesta: `databricks bundle run ingest_market_data -t dev`
+
+Estado y hitos en [PLAN.md](PLAN.md).
 
 ## Configuración
 

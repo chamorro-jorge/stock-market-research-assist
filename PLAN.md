@@ -44,7 +44,7 @@ el análisis.
 ### M0 — Cimientos `[en curso]`
 - [x] `git init` + `.gitignore` (los `.env` de day-2 quedan fuera)
 - [x] `PLAN.md` y esquema SQL
-- [ ] `databricks.yml` (Databricks Asset Bundle)
+- [x] `databricks.yml` (Databricks Asset Bundle) + `SETUP.md` con los pasos de credenciales
 - [ ] Secret scope con la API key de Massive (reutilizar el patrón de `massive_client.py`)
 - [ ] Crear tablas en Lakebase + sembrar 1 usuario y la watchlist (AAPL, MSFT, NVDA, JPM, XOM)
 

@@ -1,0 +1,33 @@
+# Databricks Asset Bundle — despliega el job de ingesta y la app.
+#   databricks bundle validate
+#   databricks bundle deploy -t dev
+#   databricks bundle run ingest_market_data -t dev
+
+bundle:
+  name: stock-market-research-assist
+
+variables:
+  tickers:
+    description: Universo de tickers a ingerir (separados por coma)
+    default: AAPL,MSFT,NVDA,JPM,XOM
+  massive_scope:
+    description: Secret scope con la API key de Massive
+    default: massive
+  lakebase_scope:
+    description: Secret scope con la URL de conexión a Lakebase
+    default: database
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-2e2ed7f0-26e7.cloud.databricks.com
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-2e2ed7f0-26e7.cloud.databricks.com
+
+include:
+  - resources/*.yml
