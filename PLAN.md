@@ -45,7 +45,7 @@ el análisis.
 - [x] `git init` + `.gitignore` (los `.env` de day-2 quedan fuera)
 - [x] `PLAN.md` y esquema SQL
 - [x] `databricks.yml` (Databricks Asset Bundle) + `SETUP.md` con los pasos de credenciales
-- [ ] Secret scope con la API key de Massive (reutilizar el patrón de `massive_client.py`)
+- [x] `scripts/setup_secrets.py` para crear los scopes desde un notebook (queda ejecutarlo)
 - [ ] Ejecutar `sql/schema.sql` y `sql/seed.sql` en Lakebase — sembrar 1 usuario y la watchlist (AAPL, MSFT, NVDA, JPM, XOM)
 
 ### M1 — Esqueleto vertical `[pendiente]`
